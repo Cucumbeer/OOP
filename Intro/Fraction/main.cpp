@@ -1,11 +1,11 @@
-#include<iostream>
+п»ї#include<iostream>
 using namespace std;
 
-class Fraction    //Класс, описывающий простую дробь
+class Fraction    //РљР»Р°СЃСЃ, РѕРїРёСЃС‹РІР°СЋС‰РёР№ РїСЂРѕСЃС‚СѓСЋ РґСЂРѕР±СЊ
 {
-	int integer;		//целая часть
-	int numerator;		//Числитель
-	int denominator;	//Знаменатель
+	int integer;		//С†РµР»Р°СЏ С‡Р°СЃС‚СЊ
+	int numerator;		//Р§РёСЃР»РёС‚РµР»СЊ
+	int denominator;	//Р—РЅР°РјРµРЅР°С‚РµР»СЊ
 public:
 	int get_integer()const
 	{
@@ -29,7 +29,7 @@ public:
 	}
 	void set_denominator(int denominator)
 	{
-		if (denominator == 0)denominator = 1; //Фильтрация данных
+		if (denominator == 0)denominator = 1; //Р¤РёР»СЊС‚СЂР°С†РёСЏ РґР°РЅРЅС‹С…
 		this->denominator = denominator;
 	}
 	//		Constructors:
@@ -85,14 +85,14 @@ public:
 	}
 
 	//			Increment/Decrement:
-	Fraction& operator++()		//Префиксный инкремент
+	Fraction& operator++()		//РџСЂРµС„РёРєСЃРЅС‹Р№ РёРЅРєСЂРµРјРµРЅС‚
 	{
 		integer++;
 		return *this;
 	}
-	Fraction operator++(int)	//Постфиксный инкремент
+	Fraction operator++(int)	//РџРѕСЃС‚С„РёРєСЃРЅС‹Р№ РёРЅРєСЂРµРјРµРЅС‚
 	{
-		Fraction old = *this;   //Сохраняем старое значение.  Copy constructor
+		Fraction old = *this;   //РЎРѕС…СЂР°РЅСЏРµРј СЃС‚Р°СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ.  Copy constructor
 		integer++;
 		return old;  //Copy constructor
 	}
@@ -135,7 +135,7 @@ Fraction operator*(Fraction left, Fraction right)
 	);
 	return result;*/
 
-	return Fraction      //Здесь мы явно вызываем конструктор, который создает временный безымянный объект
+	return Fraction      //Р—РґРµСЃСЊ РјС‹ СЏРІРЅРѕ РІС‹Р·С‹РІР°РµРј РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ, РєРѕС‚РѕСЂС‹Р№ СЃРѕР·РґР°РµС‚ РІСЂРµРјРµРЅРЅС‹Р№ Р±РµР·С‹РјСЏРЅРЅС‹Р№ РѕР±СЉРµРєС‚
 	(
 		left.get_numerator() * right.get_numerator(),
 		left.get_denominator() * right.get_denominator()
@@ -189,7 +189,7 @@ void main()
 
 	/*
 	TODO:
-	для класса Fraction перегрузить следущие операторы: 
+	РґР»СЏ РєР»Р°СЃСЃР° Fraction РїРµСЂРµРіСЂСѓР·РёС‚СЊ СЃР»РµРґСѓС‰РёРµ РѕРїРµСЂР°С‚РѕСЂС‹: 
 	1. Arithmetical operators: +, -, *, /,
 	2. Increment/Decrement: ++, --;
 	3. Compound assignments: +=, -=, *=, /= 
