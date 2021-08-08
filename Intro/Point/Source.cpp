@@ -72,7 +72,7 @@ public:
 	Point& operator=(const Point& other)
 	{
 		this->x = other.x;
-		this->x = other.y;
+		this->y = other.y;
 		cout << "Copy Assignment:\t\t" << this << endl; 
 		return *this; 
 	}
@@ -163,6 +163,7 @@ void main()
 	C.Print();
 
 #endif // ASSGMNMENT_CHECK
+
 
 }
 
