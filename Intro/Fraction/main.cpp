@@ -158,6 +158,30 @@ public:
 		return *this;*/
 		return Fraction(denominator, numerator);
 	}
+	Fraction& reduce()
+	{
+		int more, less, rest;
+		if (numerator > denominator)
+		{
+			more = numerator;
+			less = denominator;
+		}
+		else
+		{
+			more = denominator;
+			less = numerator;
+		}
+		do
+		{
+			rest = more % less;
+			more = less;
+			less = rest;
+		} while (rest);
+		int GCD = more;  // GCD - Greatest Common Divisor (НОК)
+		numerator /= GCD;
+		denominator /= GCD;
+		return *this;
+	}
 };
 
 Fraction operator*( Fraction left,  Fraction right)
@@ -409,6 +433,7 @@ void main()
 	cout << "Введите простую дробь: ";
 	cin >> A;
 	cout << "Вы ввели: " << A << endl;
+	cout << "Сокращенная дробь: " << A.reduce() << endl;
 #endif // INPUT_CHECK
 
 
