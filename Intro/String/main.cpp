@@ -22,25 +22,25 @@ public:
 	{
 		return str;
 	}
-	explicit String(unsigned int size = 80)
+	explicit String(unsigned int size = 80):size(size), str(new char[size]{})
 	{
-		this->size = size;
-		this->str = new char[size] {};		//{}  обнул€ют выдел€емую пам€ть 
+		//this->size = size;
+		//this->str = new char[size] {};		//{}  обнул€ют выдел€емую пам€ть 
 		cout << "DefConstructor:\t" << this << endl;
 	}
-	String(const char* str)  //константный указатель на char - это строкова€ константа
+	String(const char* str):size(strlen(str)+1), str(new char[size]{})
 	{
 		//while (str[size++]);
-		this->size = strlen(str) + 1;	//+1 потому что this->size хранит размер в Ѕайтах,
+		//this->size = strlen(str) + 1;	//+1 потому что this->size хранит размер в Ѕайтах,
 										//а strlen() считает размер в символах
-		this->str = new char[size] {};
+		//this->str = new char[size] {};
 		for (int i = 0; i < size; i++)this->str[i] = str[i];
 		cout << "1ArgConstructor:\t" << this << endl;
 	}
-	String(const String& other)
+	String(const String& other):size(other.size), str(new char[size]{}) //инициализаци€ в заголовке.
 	{
-		this->size = other.size;
-		this->str = new char[size] {};
+		//this->size = other.size;
+		//this->str = new char[size] {};
 		for (int i = 0; i < size; i++)this->str[i] = other.str[i];
 		cout << "Copy constructor:" << this << endl;
 	}
@@ -148,5 +148,5 @@ void main()
 	Ќаследование отображает отношени€ между классами типа: "явл€етс€".
 	» поэтому прежде, чем что-то от чего-то наследовать нужно убедитьс€ в том, что что-то €вл€етс€ чем-то.
 	Ќапример: кот €вл€етс€ животным.
-
+	»нициализаци€ в заголовке возможна только в конструкторах.
 */
