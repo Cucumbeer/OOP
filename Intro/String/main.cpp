@@ -28,7 +28,7 @@ public:
 		//this->str = new char[size] {};		//{}  обнуляют выделяемую память 
 		cout << "DefConstructor:\t" << this << endl;
 	}
-	String(const char* str):size(strlen(str)+1), str(new char[size]{})
+	String(const char* str):String(strlen(str)+1)  //Мы делегируем выделение памяти первому конструктору.
 	{
 		//while (str[size++]);
 		//this->size = strlen(str) + 1;	//+1 потому что this->size хранит размер в Байтах,
@@ -37,11 +37,11 @@ public:
 		for (int i = 0; i < size; i++)this->str[i] = str[i];
 		cout << "1ArgConstructor:\t" << this << endl;
 	}
-	String(const String& other):size(other.size), str(new char[size]{}) //инициализация в заголовке.
+	String(const String& other): String(other.str)
 	{
 		//this->size = other.size;
 		//this->str = new char[size] {};
-		for (int i = 0; i < size; i++)this->str[i] = other.str[i];
+		//for (int i = 0; i < size; i++)this->str[i] = other.str[i];
 		cout << "Copy constructor:" << this << endl;
 	}
 	~String()
