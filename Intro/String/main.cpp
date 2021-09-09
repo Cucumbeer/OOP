@@ -10,79 +10,89 @@ class String
 	unsigned int size;		//Размер строки в байтах 
 	char* str;				//Указатель на строку в динамической памяти 
 public:
-	unsigned int get_size()const
-	{
-		return size;
-	}
-	const char* get_str()const
-	{
-		return str;
-	}
-	 char* get_str()
-	{
-		return str;
-	}
-	explicit String(unsigned int size = 80):size(size), str(new char[size]{})
-	{
-		//this->size = size;
-		//this->str = new char[size] {};		//{}  обнуляют выделяемую память 
-		cout << "DefConstructor:\t" << this << endl;
-	}
-	String(const char* str):String(strlen(str)+1)  //Мы делегируем выделение памяти первому конструктору.
-	{
-		//while (str[size++]);
-		//this->size = strlen(str) + 1;	//+1 потому что this->size хранит размер в Байтах,
-										//а strlen() считает размер в символах
-		//this->str = new char[size] {};
-		for (int i = 0; i < size; i++)this->str[i] = str[i];
-		cout << "1ArgConstructor:\t" << this << endl;
-	}
-	String(const String& other): String(other.str)
-	{
-		//this->size = other.size;
-		//this->str = new char[size] {};
-		//for (int i = 0; i < size; i++)this->str[i] = other.str[i];
-		cout << "Copy constructor:" << this << endl;
-	}
-	~String()
-	{
-		delete[] this->str;  //[] показывают, что нужно удалить массив.
-		cout << "Destructor:\t" << this << endl;
-	}
+	unsigned int get_size()const;
+	const char* get_str()const;
+	char* get_str();
+	explicit String(unsigned int size = 80);
+	String(const char* str);
+	String(const String& other);
+	~String();
 
 	//			Methods:
-	void print()const
-	{
-		cout << "Size:\t" << size << endl;
-		cout << "Str:\t" << str << endl;
-	}
+	void print()const;
 
 	//			Operators:
-	String& operator=(const String& other)
-	{
-		if (this == &other)return *this;
-		delete[] this->str;
-		this->size = other.size;
-		this->str = new char[size] {};
-		for (int i = 0; i < size; i++)this->str[i] = other.str[i];
-		cout << "Copy assignment: " << this << endl;
-		return *this;
-	}
-	String& operator+=(const String& other)
-	{
-		return *this = *this + other;
-	}
+	String& operator=(const String& other);
+	String& operator+=(const String& other);
 	//Оператор квадратные скобки возвращает значение по индексу 
-	const char& operator[](unsigned int i)const  //i - index
-	{
-		return str[i];
-	}
-	 char& operator[](unsigned int i)  //i - index
-	{
-		return str[i];
-	}
+	const char& operator[](unsigned int i)const;
+	char& operator[](unsigned int i);
 	
 };
+
+unsigned int String::get_size()const
+{
+	return size;
+}
+const char* String::get_str()const
+{
+	return str;
+}
+char* String::get_str()
+{
+	return str;
+}
+ String::String(unsigned int size) :size(size), str(new char[size] {})
+{
+	cout << "DefConstructor:\t" << this << endl;
+}
+ String::String(const char* str) :String(strlen(str) + 1)  //Мы делегируем выделение памяти первому конструктору.
+{
+	for (int i = 0; i < size; i++)this->str[i] = str[i];
+	cout << "1ArgConstructor:\t" << this << endl;
+}
+ String::String(const String& other) : String(other.str)
+{
+	cout << "Copy constructor:" << this << endl;
+}
+ String::~String()
+{
+	delete[] this->str;  //[] показывают, что нужно удалить массив.
+	cout << "Destructor:\t" << this << endl;
+}
+
+//			Methods:
+void String::print()const
+{
+	cout << "Size:\t" << size << endl;
+	cout << "Str:\t" << str << endl;
+}
+
+//			Operators:
+String& String::operator=(const String& other)
+{
+	if (this == &other)return *this;
+	delete[] this->str;
+	this->size = other.size;
+	this->str = new char[size] {};
+	for (int i = 0; i < size; i++)this->str[i] = other.str[i];
+	cout << "Copy assignment: " << this << endl;
+	return *this;
+}
+String& String::operator+=(const String& other)
+{
+	return *this = *this + other;
+}
+//Оператор квадратные скобки возвращает значение по индексу 
+const char& String::operator[](unsigned int i)const  //i - index
+{
+	return str[i];
+}
+char& String::operator[](unsigned int i)  //i - index
+{
+	return str[i];
+}
+
 ostream& operator<<(ostream& os, const String& obj)
 {
 	return os << obj.get_str();
